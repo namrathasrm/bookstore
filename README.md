@@ -1,37 +1,22 @@
-# AWS Networking Setup
+# Faas (Serverless)
 
-## Infrastructure as Code with Terraform
+## Objective
+* Send email to the user based on the timestamp of the last email sent
+* The function subscribes to the AWS - SNS service
 
-### Prerequisites for building infrastructure stack locally
-- Download terrafrom from offical website HashiCrop
-- Unzip it in root folder
-- Install AWS cli
+## Prerequisites for building and deploying application locally
+
+* Insall AWS CLI
 ```
 $ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 $ unzip awscliv2.zip
 $ sudo ./aws/install
 ```
-- Configuring AWS cli by setting up profile 
+* Configuring AWS CLI by setting up profile 
+* Create your Stack on AWS
 
-### Build Instructions
-- Run commands 
-```
- $ terraform initi
- $ terraform plan
- $ terraform apply
-```
+## Build and Deploy using CircleCI (CI\CD)
 
-### Destroy Instruction 
-- Run command
-```
- $ terraform destroy
-```
-
-### Import Ceritificate Using AWS CLI
-Use following command to import a certificate using the AWS Command Line Interface (AWS CLI)
-
-```bash
-$ openssl x509 -in <youCrtFile>.crt -out <youCertName>.pem
-$ openssl x509 -in <yourCaBundleFile>.ca-bundle -out <yourCertChainName>.pem
-$ sudo aws acm import-certificate --certificate file://<youCertName>.pem --certificate-chain file://<yourCertChainName>.pem --private-key file:/<yourPrivateKey>.key
-```
+* Currently using Cirle CI tools to build new artifacts of function on each commit on GitHub
+* Configure your faas repository in Circle CI and follow the project
+* Setup project environment variable for aws_access_key, aws_secret_key and aws_region
